@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tokyo Time</title>
+    <style>
+      h1 {
+        margin-top: 10rem;
+        margin-bottom: 3rem;
+      }
+      div.content {
+        text-align: center;
+      }
+      a {
+        color: black;
+        text-decoration: none;
+      }
+      a:hover {
+        color: RoyalBlue;
+        cursor: pointer;
+      }
+      body {
+        font-family: "Tenor Sans", sans-serif;
+        font-size: 20px;
+        line-height: 1.5;
+        font-weight: bold;
+        background-color: WhiteSmoke;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <h1>
+        <a href="/">Tokyo</a>
+      </h1>
+      <div id="time-container">
+        <p id="date-is"></p>
+        <p id="time-is"></p>
+      </div>
+    </div>
+  </body>
+  <script>
+    const url = "http://worldtimeapi.org/api/timezone/Asia/Tokyo";
+
+    fetchFunction = () => {
+      fetch(url)
+        .then((response) => response.json())
+        .then((time) => {
+          console.log(time);
+
+          // select div that wil house the time information
+          const timeContainer = document.querySelector("#time-container");
+
+          // select tag for information to be added to
+          const dateIs = document.querySelector("p#date-is");
+          const timeIs = document.querySelector("p#time-is");
+
+          // what information to add to tag
+          let dateTimeString = time.datetime;
+            console.log(dateTimeString);
+          let yearString = dateTimeString.substring(0, 4);
+          let monthString = dateTimeString.substring(5, 7);
+          let dayString = dateTimeString.substring(8, 10);
+          let dateString = `${dayString}/${monthString}/${yearString}`;
+
+          let timeString = dateTimeString.substring(11, 19);
+
+          // change the content of the tag
+          dateIs.innerText = dateString;
+          timeIs.innerText = timeString;
+
+          // select the main container and place the new element at the bottom as child
+          timeContainer.appendChild(dateIs);
+          timeContainer.appendChild(timeIs);
+        });
+    };
+
+    // refresh site every secound for updated times
+    setInterval(fetchFunction, 1000);
+
+    const formatNumbers = (number) => {
+      if (number < 10) {
+        return "0" + number;
+      } else return number;
+    };
+  </script>
+</html>
