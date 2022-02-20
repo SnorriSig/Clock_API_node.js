@@ -4,8 +4,8 @@ const port = process.env.PORT || 8080
 const { log } = require('console');
 const app = express();
 
-const publicDirectoryPath = path.join(__dirname,"/public")
-app.use(express.static(publicDirectoryPath))
+// const publicDirectoryPath = path.join(__dirname,"/public")
+// app.use(express.static(publicDirectoryPath))
 
 app.get("/", (req, res) =>{
     res.sendFile(__dirname + "/public/index.html")
