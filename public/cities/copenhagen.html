@@ -5,19 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Copenhagen Time</title>
-    <link rel="stylesheet" type="text/css" href="cities/cities.css" >
-
+    <link rel="stylesheet" type="text/css" href="cities/cities.css" />
   </head>
   <body>
-    <div class="content">
-      <h1>
-        <a href="/">Copenhagen</a>
-      </h1>
-      <div id="time-container">
-        <p id="date-is"></p>
-        <p id="time-is"></p>
-      </div>
-    </div>
+    <main>
+        <h1>
+          <a href="/">Copenhagen</a>
+        </h1>
+        <div>
+          <p id="date-is"></p>
+          <p id="time-is"></p>
+        </div>
+    </main>
   </body>
   <script>
     const url = "https://worldtimeapi.org/api/timezone/Europe/Copenhagen";
@@ -68,7 +67,7 @@
           timeContainer.appendChild(timeIs);
         });
     };
-    
+
     // refresh site every secound for updated times
     setInterval(fetchFunction, 1000);
 
